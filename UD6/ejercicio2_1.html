@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+<body>
+
+
+
+    <script>
+       //variables
+            var a = 0;
+            var b = 0;
+            var c = 0;
+            var d = 0;
+            var e = 0;
+            var f = 0;
+            var g = 0;
+            var h = 0;
+            var i = 0;
+            var j = 0;
+            let numeros = new Array(10);
+
+function suerte2(numeros) {
+    //guardamos y retornamos el numero random
+    var aleatorio = parseInt(Math.floor(Math.random()*10)+1);
+    return aleatorio;
+}
+
+for (x = 0; x < 10000; x++) {
+    //llamamos a la funcion para sacar numero random
+    salida = suerte2();
+    //todos los posibles casos y van sumando los contadores
+    switch (salida) {
+        case 1:
+            a++;
+            break;
+        case 2:
+            b++;
+            break;
+        case 3:
+            c++;
+            break;
+        case 4:
+            d++;
+            break;
+        case 5:
+            e++;
+            break;
+        case 6:
+            f++;
+            break;
+        case 7:
+            g++;
+            break;
+        case 8:
+            h++;
+            break;
+        case 9:
+            i++;
+            break;
+        case 10:
+            j++;
+            break;
+    }
+}
+//mostramos por consola los resultados
+console.log('El 1 ha salido ' + a + ' veces');
+console.log('El 2 ha salido ' + b + ' veces');
+console.log('El 3 ha salido ' + c + ' veces');
+console.log('El 4 ha salido ' + d + ' veces');
+console.log('El 5 ha salido ' + e + ' veces');
+console.log('El 6 ha salido ' + f + ' veces');
+console.log('El 7 ha salido ' + g + ' veces');
+console.log('El 8 ha salido ' + h + ' veces');
+console.log('El 9 ha salido ' + i + ' veces');
+console.log('El 10 ha salido ' + j + ' veces');
+        
+    </script>
+</body>
+</html>
