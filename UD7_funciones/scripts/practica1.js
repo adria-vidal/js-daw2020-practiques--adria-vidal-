@@ -7,6 +7,7 @@ var veces = true;
 var ordenado = Array.from(palabra).sort();
 //revertimos el array ordenado
 var revert = ordenado.reverse();
+//llamamos a la funcion
 
 while (veces) {
   //guardamos la palabra insertada a traves de la ventana emergente
@@ -18,6 +19,15 @@ while (veces) {
     palabra.add(cad);
   }
 }
+//ordenamos el array
+var ordenado = Array.from(palabra).sort();
+//revertimos el array ordenado
+var revert = ordenado.reverse();
+//llamamos a la funcion
+//ordenamos el array
+var ordenado = Array.from(palabra).sort();
+//revertimos el array ordenado
+var revert = ordenado.reverse();
 //llamamos a la funcion
 mostrar();
 
