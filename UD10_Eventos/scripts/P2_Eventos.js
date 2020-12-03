@@ -6,7 +6,7 @@ document.getElementById('capa1').addEventListener('dragend', dragend);
 document.getElementById('capa1').addEventListener('drag', opacidad);
 document.getElementById('capa2').addEventListener('dragenter', dragenter);
 document.getElementById('capa2').addEventListener('dragleave', dragleave);
-document.getElementById('capa2').addEventListener('dragover', function(event) {
+document.getElementById('capa2').addEventListener('dragover', function (event) {
   event.preventDefault();
   document.getElementById('capa2').style.backgroundColor = 'red';
 });
@@ -21,15 +21,17 @@ function dragend() {
   document.getElementById('capa1').style.opacity = '0%';
 }
 //al salir de la zona div2, color de fondo invisible
-function dragleave() {
+function dragleave(ev) {
+  console.log('Leave' + ev);
   document.getElementById('capa2').style.backgroundColor = 'rgba(0,0,255,0)';
 }
 
-//cambio del texto y color fondo del div2
+//cambio del texto y color fondo del div2 y borrado
 function drop(ev) {
   console.log('Drop' + ev);
   document.getElementById('capa2').style.backgroundColor = 'yellow';
   document.getElementById('capa2').innerHTML = 'Lo has logrado!';
+  document.getElementById('capa1').innerHTML = ' ';
 }
 //evento para cambiar color fondo al entrar en el div
 function dragenter() {
