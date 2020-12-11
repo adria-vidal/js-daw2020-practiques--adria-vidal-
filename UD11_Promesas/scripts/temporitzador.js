@@ -20,7 +20,8 @@ function temporizador(tiempo) {
   return promesa;
 }
 /**
- * Funcion para realizar la cuenta atrás y escribirlo
+ * Funcion asíncrona para realizar la cuenta atrás y escribirlo por pantalla
+ * pasandole 4 parámetros
  * @param {Int} initnum numero inicial del contador
  * @param {node} elementWrite elemento en el que se escribe(body en este caso)
  * @param {number} interval numero en milisegundos, cada cuanto tiempo decrementamos el contador
@@ -33,18 +34,18 @@ async function cuenta(
   fucionCallback = () => {}
 ) {
   var cont = initnum;
-
+  //obtenemos respuesta de la promesa y escribimos el contador en el body
+  //mientras el contador sea positivo
   while (cont >= 0) {
     let promesa = await new Promise((resolve, reject) => {
       setTimeout(() => resolve('OK'), interval);
     })
 
       .then(() => {
-        console.log('hola');
-        elementWrite.innerHTML = cont;
-        cont--;
-        
+        elementWrite.innerHTML = cont--;
       })
+
+      //si hay error, le asignamos el valor -1 y asi paramos el bucle
       .catch((err) => {
         console.log(err);
         cont = -1;
