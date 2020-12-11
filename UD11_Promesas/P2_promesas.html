@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 2 promesas</title>
+</head>
+
+<body>
+    <script type="module">
+        //importo el temporizador
+        import * as temp from "./scripts/temporitzador.js";
+        let p1 = document.createElement("p");
+        let p2 = document.createElement("p");
+
+        temp.cuenta(6, p1);
+        temp.cuenta(60, p2, 100, () => { p2.innerHTML = 'FIN' });
+    </script>
+</body>
+
+</html>
