@@ -21,10 +21,10 @@ function temporizador(tiempo) {
 }
 /**
  * Funcion para realizar la cuenta atrás y escribirlo
- * @param {number} initnum numero inicial del contador
+ * @param {Int} initnum numero inicial del contador
  * @param {node} elementWrite elemento en el que se escribe(body en este caso)
  * @param {number} interval numero en milisegundos, cada cuanto tiempo decrementamos el contador
- * @param {function} fucionCallback callback para cuando el contador termine
+ * @param {Int} fucionCallback callback para cuando el contador termine
  */
 async function cuenta(
   initnum,
@@ -37,14 +37,17 @@ async function cuenta(
   while (cont >= 0) {
     let promesa = await new Promise((resolve, reject) => {
       setTimeout(() => resolve('OK'), interval);
-    });
-    promesa
+    })
+
       .then(() => {
-        elementWrite.innerHtml = cont;
+        console.log('hola');
+        elementWrite.innerHTML = cont;
         cont--;
+        
       })
       .catch((err) => {
         console.log(err);
+        cont = -1;
       });
   }
   fucionCallback();
