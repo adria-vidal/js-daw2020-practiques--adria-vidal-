@@ -17,10 +17,10 @@ function getFecha() {
 function updateFecha(userActual) {
   let fechaNow = getFecha();
 
-  //Obtengo la cookie del usuario conectado
+  //Obtenemos cookie del usuario conectado
   let infoUsuario = Cookies.get(userActual);
 
-  //Lo convierto para poder modificarlo
+  //convertimos para poder modificarlo
   let objUsuario = JSON.parse(infoUsuario);
   objUsuario.fechaEntrada = fechaNow;
   let stringUsuario = JSON.stringify(objUsuario);
@@ -38,7 +38,7 @@ function updateFecha(userActual) {
  * @returns {Promise} Promesa que devuelve los datos del usuario actual
  */
 function getDatosCookie(userActual) {
-    let tiempo = 100;
+    let tiempo = 50;
   return new Promise((resolv, reject) => {
     setTimeout(() => {
       let datosUsuario = JSON.parse(Cookies.get(userActual));
@@ -51,12 +51,34 @@ function getDatosCookie(userActual) {
     }, tiempo * 2);
   });
 }
+/**
+ * funcion para realizar petición del los datos de la cookie
+ * del usuario que está conectado
+ */
+function cargarPreguntas(delay = false, userActual, tiempo = 0) {
+  return new Promise((resolv, reject) => {
+    if (delay) {
+      setTimeout(() => {
+        let user = JSON.parse(Cookies.get(userActual));
+        resolv(user);
+      }, tiempo);
+
+      setTimeout(() => {
+        let error = 'No se ha podido cargar las preguntas';
+        reject(error);
+      }, tiempo * 2);
+    } else {
+      let user = JSON.parse(Cookies.get(userActual));
+      resolv(user);
+    }
+  });
+}
 
 /**
  *
  * Guarda los datos en la cookie del usuario que se le pase por paramentro
- * @param {Object} objDatos Datos de la cookie modificados
- * @param {String} userActual Usuario al cual se le va a modificar su informacion
+ * @param {Object} objDatos Datos cookie modificados
+ * @param {String} userActual Usuario al que se le modifica su informacion
  */
 function guardarDatosEnCookie(objDatos, userActual) {
   let strPreguntas = JSON.stringify(objDatos);
@@ -66,19 +88,19 @@ function guardarDatosEnCookie(objDatos, userActual) {
 /**
  * Guarda un usuario en una cookie junto con sus datos como son la fecha de acceso
  *  y sus preguntas
- * @param {Object} usuarioAGuardar Usuario que se va a guardar en la cookie
+ * @param {Object} userSave Usuario que guardamos en la cookie
  * @param {*} datosUsuario Los datos de dicho usuario
  */
-function saveUserCookie(usuarioAGuardar, datosUsuario) {
+function saveUserCookie(userSave, datosUsuario) {
   let strDatosUsuario = JSON.stringify(datosUsuario);
 
-  Cookies.set(usuarioAGuardar, strDatosUsuario, { expires: 7 });
-  Cookies.set('userActual', usuarioAGuardar);
+  Cookies.set(userSave, strDatosUsuario, { expires: 5 });
+  Cookies.set('userActual', userSave);
 }
 
 /**
- *  Establece una cookie que indica en todo momento cual es el usuario que ha iniciado sesion
- *  @param {String} userActual Usuario que esta acutualmente
+ *  Establece cookie que indica el usuario que ha iniciado sesion
+ *  @param {String} userActual Usuario actual
  */
 function setUserActual(userActual) {
   Cookies.set('userActual', userActual);
@@ -100,4 +122,5 @@ export {
   saveUserCookie,
   setUserActual,
   getuserActual,
+  cargarPreguntas,
 };

@@ -1,3 +1,4 @@
+/** Importamos funciones de modulo exterior */
 import {
   getDatosCookie,
   getuserActual,
