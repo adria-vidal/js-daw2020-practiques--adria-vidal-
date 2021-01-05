@@ -23,7 +23,7 @@ let buttonBack = document.getElementById('atras');
 let buttonSave = document.getElementById('guardar');
 
 /**
- * Evento al cargar,cuando usuario entra a sus preguntas,la fecha se actualiza
+ * Evento al cargar,cuando usuario entra a sus preguntas,la fecha se actualiza a la actual
  */
 window.addEventListener('load', updateFecha(userActual));
 
