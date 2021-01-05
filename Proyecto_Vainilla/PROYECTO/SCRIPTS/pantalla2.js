@@ -1,8 +1,5 @@
 /** Importamos funciones de modulo exterior */
-import {
-  getDatosCookie,
-  getuserActual,
-} from './moduleCookieFecha.js';
+import { getDatosCookie, getuserActual } from './moduleCookieFecha.js';
 
 /**
  * Funcion para mostrar un saludo con el correo
@@ -26,7 +23,7 @@ function intro() {
 
   //Obtengo los datos del usuario
   let promesa = getDatosCookie(saludocookie);
-  //Fecha de la ultima vez que entra el usuario 
+  //Fecha de la ultima vez que entra el usuario
   promesa.then((datosFecha) => {
     let fechaEntrada = datosFecha.fechaEntrada;
     parr.textContent = `Ultima vez que entraste: ${fechaEntrada}`;

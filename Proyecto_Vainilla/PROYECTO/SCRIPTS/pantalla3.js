@@ -125,7 +125,7 @@ window.addEventListener('load', (tiempo) => {
  *
  * @param {Array} numeroRows Array que contiene las preguntas
  * @param {Object} datos Objeto de la cookie para acceder al array de preguntas
- * @param {Node} tabla Elemento donde se va a "pintar" todo
+ * @param {Node} tabla Elemento donde al que se le insertará otros elementos
  */
 function crearRowPreguntas(numeroRows = 0, datos, tabla) {
   if (numeroRows == 0) return false;
@@ -156,7 +156,7 @@ function crearRowPreguntas(numeroRows = 0, datos, tabla) {
       //Agrego la nueva fila a la tabla
       tabla.appendChild(newRow);
 
-      //Obtengo los datos de la cookie del usuario actual con un retraso de 5000 mls
+      //Obtengo los datos de la cookie del usuario actual con  retraso
       let promesa = getDatosCookie(userActual, tiempo);
       /**
        * Promesa para crear una nueva pregunta al usuario
