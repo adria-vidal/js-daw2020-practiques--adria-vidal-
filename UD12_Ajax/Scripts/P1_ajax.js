@@ -22,34 +22,32 @@ function clearFields() {
   });
 }
 
- function procesarFetch(numsecs, user) 
-  let id = document.querySelector('id');
-  let email = document.querySelector('email');
-  let name = document.querySelector('name');
-  let status = document.querySelector('status');
+function procesarFetch(numsecs, user) {
+  let id = document.getElementById('id');
+  let email = document.getElementById('email');
+  let name = document.getElementById('name');
+  let status = document.getElementById('status');
   const url_retraso = BASE_URL + user + '?delay=' + numsecs;
-  
+  /**
+   * en caso de que haya un error en la conexión a la primera URL
+   * lanza el error de estado
+   * Si es exitosa la conexion devuelve el Json
+   */
   fetch(url_retraso)
     .then((res) => {
-    /**
-     * cuando la primera API responda coin un error
-     * la respuesta será false y lanzará un error
-     */
-    if (res.ok == false) throw new Error(res.status);
-    else{
-    return res.json();
-  }
-  })
+      if (res.ok == false) throw new Error(res.status);
+      else {
+        return res.json();
+      }
+    })
 
     .then((txtJson) => {
-      
       email.innerHTML = txtJson.data.email;
       id.innerHTML = txtJson.data.id;
-
+      /** Contenido que vamos a enviar con Post  */
       const envio = {
         headers: {
-          'Content-type':
-           'application/json; charset=UTF-8',
+          'Content-type': 'application/json; charset=UTF-8',
         },
         body: JSON.stringify(txtJson.data),
         method: 'POST',
@@ -64,10 +62,11 @@ function clearFields() {
         .then((txtJson) => {
           name.innerHTML = txtJson.json.first_name;
           /** status 200 es OK */
-          status.innerHTML = 200;
+          status.textContent = 200;
         });
     })
     /** Tratamos el error */
     .catch((err) => {
-      status.innerHTML = err.message;
+      status.textContent = err.message;
     });
+}
