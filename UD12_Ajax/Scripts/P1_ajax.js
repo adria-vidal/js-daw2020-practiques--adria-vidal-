@@ -67,6 +67,7 @@ function procesarFetch(numsecs, user) {
     })
     /** Tratamos el error */
     .catch((err) => {
+      console.log('error atrapado');
       status.textContent = err.message;
     });
 }
